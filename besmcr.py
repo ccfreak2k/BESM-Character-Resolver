@@ -2,23 +2,24 @@
 """
 SYNOPSIS
 
-	besmcr.py
+    besmcr.py
 
 DESCRIPTION
 
-	Python program to assist in making a BESM d20 character.
+    Python program to assist in making a BESM d20 character.
 
 AUTHOR
 
-	ccfreak2k
+    ccfreak2k
 
 LICENSE
 
-	This program is licensed under the terms of the BSD license.
+    This program is licensed under the terms of the BSD license.
 
 VERSION
 
-	$Id$
+    $Id$
 """
 
 def main ():
+    
