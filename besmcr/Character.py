@@ -1,10 +1,13 @@
-def Character(object):
+from math import ceil
+
+class Character(object):
     """Represents a BESM character configuration."""
     
     def __init__(self):
         # Character information
         self.name = u""
         self.age = u""
+        self.genre = u""
         self.notes = u""
                 
         # Appearance attributes
@@ -24,7 +27,7 @@ def Character(object):
         # Modifiers
         self.attributes = []
         self.skills = []
-        
+    
     def get_health(self):
         """Returns HP based on stats.
         
@@ -42,16 +45,16 @@ def Character(object):
     def get_shock(self):
         """Returns shock value based on stats.
         
-        Shock = (HP / 5) (rounded)
+        Shock = (HP / 5) (rounded up)
         """
-        return int(round(self.get_health() / 5.0))
+        return int(ceil(self.get_health() / 5.0))
         
     def get_combat(self):
         """Returns combat value based on stats.
         
-        Combat = (Body + Mind + Soul) / 3 (rounded)
+        Combat = (Body + Mind + Soul) / 3 (rounded up)
         """
-        return int(round((self.body + self.mind + self.soul) / 3.0))
+        return int(ceil((self.body + self.mind + self.soul) / 3.0))
         
     def get_defense(self):
         """Returns defense value based on stats.
