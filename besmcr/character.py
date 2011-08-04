@@ -17,9 +17,8 @@ class Character(object):
         self.height = u""
         self.weight = u""
         
-        # Available points
-        self.character_points = 0
-        self.skill_points = 0
+        # Points
+        self.max_character_points = 0
         
         # Stats
         self.body = 0
@@ -30,7 +29,13 @@ class Character(object):
         self.attributes = []
         self.skills = []
     
-    # ==========================================================================
+    # --------------------------------------------------------------------------
+    
+    def get_remaining_character_points(self):
+        """Returns the remaining character points, as the name suggests"""
+        return self.max_character_points - (self.body + self.mind + self.soul)
+        
+    # --------------------------------------------------------------------------
     
     def get_health(self):
         """Returns HP based on stats.
