@@ -8,15 +8,15 @@ class Character(object):
     
     def __init__(self):
         # Character information
-        self.name = u""
-        self.age = u""
-        self.genre = u""
-        self.notes = u""
+        self.name = ""
+        self.age = ""
+        self.genre = ""
+        self.notes = ""
                 
         # Appearance attributes
-        self.race = u""
-        self.height = u""
-        self.weight = u""
+        self.race = ""
+        self.height = ""
+        self.weight = ""
         
         # Points
         self.max_character_points = 20

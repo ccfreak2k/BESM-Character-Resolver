@@ -10,7 +10,7 @@ from besmcr import *
 
 class MainWindow(QtGui.QMainWindow):
     """Our main Qt window class."""
-    
+        
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         
@@ -20,10 +20,7 @@ class MainWindow(QtGui.QMainWindow):
         
         # Create a new character instance for us to work with
         self.character = character.Character()
-        self.character_filename = ""
-        
-        # Initalise a bunch of poop
-        self.update_stats()
+        self.update_for_new_character()
     
     # --------------------------------------------------------------------------
     
