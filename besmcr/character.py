@@ -1,5 +1,7 @@
 from math import ceil
 
+# ==============================================================================
+
 class Character(object):
     """Represents a BESM character configuration."""
     
@@ -27,6 +29,8 @@ class Character(object):
         # Modifiers
         self.attributes = []
         self.skills = []
+    
+    # ==========================================================================
     
     def get_health(self):
         """Returns HP based on stats.
