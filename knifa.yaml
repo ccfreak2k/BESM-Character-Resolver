@@ -1,0 +1,29 @@
+!!python/object:besmcr.character.Character
+age: !!python/object/apply:sip._unpickle_type
+- PyQt4.QtCore
+- QString
+- !!python/tuple [!!python/unicode '19']
+attributes: []
+body: 8
+genre: !!python/unicode ''
+height: !!python/object/apply:sip._unpickle_type
+- PyQt4.QtCore
+- QString
+- !!python/tuple [!!python/unicode '5'' 5"']
+max_character_points: 20
+mind: 7
+name: !!python/object/apply:sip._unpickle_type
+- PyQt4.QtCore
+- QString
+- !!python/tuple [!!python/unicode 'Knifa']
+notes: !!python/object/apply:sip._unpickle_type
+- PyQt4.QtCore
+- QString
+- !!python/tuple [!!python/unicode 'I''ll fuck your stupid shit, asshole.']
+race: !!python/unicode ''
+skills: []
+soul: 5
+weight: !!python/object/apply:sip._unpickle_type
+- PyQt4.QtCore
+- QString
+- !!python/tuple [!!python/unicode '76kg']

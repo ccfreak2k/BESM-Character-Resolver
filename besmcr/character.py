@@ -1,3 +1,4 @@
+import yaml
 from math import ceil
 
 # ==============================================================================
@@ -18,7 +19,7 @@ class Character(object):
         self.weight = u""
         
         # Points
-        self.max_character_points = 0
+        self.max_character_points = 20
         
         # Stats
         self.body = 0
@@ -71,3 +72,21 @@ class Character(object):
         Defense = (Combat - 2)
         """
         return self.get_combat() - 2
+        
+    # --------------------------------------------------------------------------
+    
+    def save(self, filename):
+        """Saves the character as a YAML file"""     
+        stream = file(filename, 'w')
+        yaml.dump(self, stream)
+
+# ==============================================================================
+
+def load(filename):
+    """Loads a character from a YAML file and returns it"""  
+    stream = file(filename, 'r')
+    c = yaml.load(stream)
+    
+    if isinstance(c, Character):
+        return c
+        
