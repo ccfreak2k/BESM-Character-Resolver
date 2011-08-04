@@ -149,6 +149,13 @@ class MainWindow(QtGui.QMainWindow):
             self.character_filename = filename
             
         self.ui.statusBar.showMessage("Saved: " + filename)
+        
+    # --------------------------------------------------------------------------
+    
+    @QtCore.pyqtSlot()
+    def on_actionExit_triggered(self):
+        """Exits the application."""
+        quit()
 
 # ==============================================================================
 
