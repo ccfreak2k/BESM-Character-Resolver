@@ -69,7 +69,8 @@ class MainWindow(QtGui.QMainWindow):
         soul_max = self.character.character_points - (self.character.body + 
             self.character.mind)
             
-        # Don't go above the max 12 limit
+        # Even if we can technically spend more than 12, game mechanics do not
+        # allow it, so cap it.
         if body_max > 12:
             body_max = 12
         if mind_max > 12:
@@ -82,7 +83,6 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.soulSpin.setMaximum(soul_max)
         
     # --------------------------------------------------------------------------
-    
     
     @QtCore.pyqtSlot(str)
     def on_nameEdit_textEdited(self, s):
@@ -146,8 +146,6 @@ class MainWindow(QtGui.QMainWindow):
             
             self.update_gui()     
     
-    # --------------------------------------------------------------------------
-    
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
         # Check if we already have a filename in use
@@ -169,8 +167,6 @@ class MainWindow(QtGui.QMainWindow):
         if filename:
             self.character.save(filename)
             self.character_filename = filename
-        
-    # --------------------------------------------------------------------------
     
     @QtCore.pyqtSlot()
     def on_actionExit_triggered(self):
