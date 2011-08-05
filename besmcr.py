@@ -20,11 +20,18 @@ class MainWindow(QtGui.QMainWindow):
         
         # Create a new character instance for us to work with
         self.character = character.Character()
-        self.update_for_new_character()
+        self.character_filename = ""
+        self.update_gui_character_info()
     
     # --------------------------------------------------------------------------
     
-    def update_for_new_character(self):
+    def update_gui(self):
+        """Updates the entire GUI"""
+        self.update_gui_character_info()
+        self.update_gui_derived_stats()
+        self.update_gui_spinbox_ranges() 
+        
+    def update_gui_character_info(self):
         """Inserts info from the character into the text boxes"""
         self.ui.nameEdit.setText(self.character.name)
         self.ui.ageEdit.setText(self.character.age)
@@ -35,10 +42,14 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.bodySpin.setValue(self.character.body)
         self.ui.mindSpin.setValue(self.character.mind)
         self.ui.soulSpin.setValue(self.character.soul)
+        self.ui.cpSpin.setValue(self.character.character_points)
         
-        self.update_stats()
-            
-    def update_stats(self):
+        # Find whatever genre was in our character file in the combo box
+        i = self.ui.genreSelection.findText(self.character.genre)
+        if i >= 0:
+            self.ui.genreSelection.setCurrentIndex(i)
+        
+    def update_gui_derived_stats(self):
         """Updates the dervived stat text boxes"""
         self.ui.healthEdit.setText(str(self.character.get_health()))
         self.ui.energyEdit.setText(str(self.character.get_energy()))
@@ -46,26 +57,32 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.defenseEdit.setText(str(self.character.get_defense()))
         self.ui.shockEdit.setText(str(self.character.get_shock()))
         
-        self.update_spinbox_ranges()
-        self.update_statusbar()
+        self.ui.remainingCpEdit.setText(str(
+            self.character.get_remaining_character_points()))        
     
-    def update_spinbox_ranges(self):
-        body_max = self.character.max_character_points - (self.character.mind + 
+    def update_gui_spinbox_ranges(self):
+        """Adjusts the spinbox ranges to match character point limitations"""
+        body_max = self.character.character_points - (self.character.mind + 
             self.character.soul)
-        mind_max = self.character.max_character_points - (self.character.body + 
+        mind_max = self.character.character_points - (self.character.body + 
             self.character.soul)
-        soul_max = self.character.max_character_points - (self.character.body + 
+        soul_max = self.character.character_points - (self.character.body + 
             self.character.mind)
+            
+        # Don't go above the max 12 limit
+        if body_max > 12:
+            body_max = 12
+        if mind_max > 12:
+            mind_max = 12
+        if soul_max > 12:
+            soul_max = 12
             
         self.ui.bodySpin.setMaximum(body_max)
         self.ui.mindSpin.setMaximum(mind_max)
         self.ui.soulSpin.setMaximum(soul_max)
-    
-    def update_statusbar(self):
-        self.ui.statusBar.showMessage("Character Points: " +
-            str(self.character.get_remaining_character_points()))
         
     # --------------------------------------------------------------------------
+    
     
     @QtCore.pyqtSlot(str)
     def on_nameEdit_textEdited(self, s):
@@ -86,30 +103,39 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.pyqtSlot()
     def on_notesEdit_textChanged(self):
         self.character.notes = self.ui.notesEdit.toPlainText()
+        
+    @QtCore.pyqtSlot(str)
+    def on_genreSelection_currentIndexChanged(self, s):
+        self.character.genre = s
     
     # --------------------------------------------------------------------------
     
     @QtCore.pyqtSlot(int)
     def on_bodySpin_valueChanged(self, i):     
         self.character.body = i
-        self.update_stats()
+        self.update_gui()
         
     @QtCore.pyqtSlot(int)
     def on_mindSpin_valueChanged(self, i):    
         self.character.mind = i
-        self.update_stats()
+        self.update_gui()
         
     @QtCore.pyqtSlot(int)
     def on_soulSpin_valueChanged(self, i):    
         self.character.soul = i
-        self.update_stats()
+        self.update_gui()
+        
+    @QtCore.pyqtSlot(int)
+    def on_cpSpin_valueChanged(self, i):
+        self.character.character_points = i
+        self.update_gui()
         
     # --------------------------------------------------------------------------
     
     @QtCore.pyqtSlot()
     def on_actionNew_triggered(self):
         self.character = character.Character()
-        self.update_for_new_character()  
+        self.update_gui()   
     
     @QtCore.pyqtSlot()
     def on_actionOpen_triggered(self):
@@ -118,9 +144,7 @@ class MainWindow(QtGui.QMainWindow):
             self.character_filename = filename
             self.character = character.load(filename)
             
-            self.update_for_new_character()       
-        
-        self.ui.statusBar.showMessage("Opened: " + filename)
+            self.update_gui()     
     
     # --------------------------------------------------------------------------
     
@@ -136,8 +160,6 @@ class MainWindow(QtGui.QMainWindow):
         if filename:
             self.character.save(filename)
             self.character_filename = filename
-            
-        self.ui.statusBar.showMessage("Saved: " + filename)
         
     @QtCore.pyqtSlot()
     def on_actionSave_As_triggered(self):
@@ -147,8 +169,6 @@ class MainWindow(QtGui.QMainWindow):
         if filename:
             self.character.save(filename)
             self.character_filename = filename
-            
-        self.ui.statusBar.showMessage("Saved: " + filename)
         
     # --------------------------------------------------------------------------
     

@@ -2,28 +2,31 @@
 age: !!python/object/apply:sip._unpickle_type
 - PyQt4.QtCore
 - QString
-- !!python/tuple [!!python/unicode '19']
+- !!python/tuple [!!python/unicode '12']
 attributes: []
-body: 8
-genre: !!python/unicode ''
+body: 4
+character_points: 30
+genre: !!python/object/apply:sip._unpickle_type
+- PyQt4.QtCore
+- QString
+- !!python/tuple [!!python/unicode 'Teenage Romance']
 height: !!python/object/apply:sip._unpickle_type
 - PyQt4.QtCore
 - QString
-- !!python/tuple [!!python/unicode '5'' 5"']
-max_character_points: 20
-mind: 7
+- !!python/tuple [!!python/unicode '4'' 5"']
+mind: 8
 name: !!python/object/apply:sip._unpickle_type
 - PyQt4.QtCore
 - QString
-- !!python/tuple [!!python/unicode 'Knifa']
+- !!python/tuple [!!python/unicode 'Lolichan']
 notes: !!python/object/apply:sip._unpickle_type
 - PyQt4.QtCore
 - QString
-- !!python/tuple [!!python/unicode 'I''ll fuck your stupid shit, asshole.']
-race: !!python/unicode ''
+- !!python/tuple [!!python/unicode 'Aren''t I kawaii? Uguu~']
+race: ''
 skills: []
-soul: 5
+soul: 9
 weight: !!python/object/apply:sip._unpickle_type
 - PyQt4.QtCore
 - QString
-- !!python/tuple [!!python/unicode '76kg']
+- !!python/tuple [!!python/unicode '67kg']

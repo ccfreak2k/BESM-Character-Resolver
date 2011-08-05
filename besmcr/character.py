@@ -10,7 +10,7 @@ class Character(object):
         # Character information
         self.name = ""
         self.age = ""
-        self.genre = ""
+        self.genre = "Cyberpunk"
         self.notes = ""
                 
         # Appearance attributes
@@ -19,12 +19,12 @@ class Character(object):
         self.weight = ""
         
         # Points
-        self.max_character_points = 20
+        self.character_points = 35
         
         # Stats
-        self.body = 0
-        self.mind = 0
-        self.soul = 0
+        self.body = 1
+        self.mind = 1
+        self.soul = 1
         
         # Modifiers
         self.attributes = []
@@ -34,7 +34,7 @@ class Character(object):
     
     def get_remaining_character_points(self):
         """Returns the remaining character points, as the name suggests"""
-        return self.max_character_points - (self.body + self.mind + self.soul)
+        return self.character_points - (self.body + self.mind + self.soul)
         
     # --------------------------------------------------------------------------
     

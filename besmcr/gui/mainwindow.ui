@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>486</width>
-    <height>375</height>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -85,7 +85,14 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QSpinBox" name="mindSpin"/>
+       <widget class="QSpinBox" name="mindSpin">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>12</number>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="soulLabel">
@@ -95,7 +102,14 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QSpinBox" name="soulSpin"/>
+       <widget class="QSpinBox" name="soulSpin">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>12</number>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="bodyLabel">
@@ -105,7 +119,14 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="bodySpin"/>
+       <widget class="QSpinBox" name="bodySpin">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>12</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -309,7 +330,14 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="cpSpin"/>
+       <widget class="QSpinBox" name="cpSpin">
+        <property name="minimum">
+         <number>10</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -348,6 +376,31 @@
       </property>
      </widget>
     </item>
+    <item row="0" column="2" colspan="3">
+     <layout class="QFormLayout" name="formLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Remaining Character Points</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="remainingCpEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <widget class="Line" name="line_9">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -372,11 +425,6 @@
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
-  </widget>
-  <widget class="QStatusBar" name="statusBar">
-   <property name="sizeGripEnabled">
-    <bool>true</bool>
-   </property>
   </widget>
   <action name="actionOpen">
    <property name="text">

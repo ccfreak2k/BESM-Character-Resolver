@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Fri Aug 05 00:27:41 2011
+# Created: Fri Aug 05 01:01:02 2011
 #      by: PyQt4 UI code generator 4.8.5
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(486, 375)
+        MainWindow.resize(486, 364)
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "BESM Character Resolver", None, QtGui.QApplication.UnicodeUTF8))
         MainWindow.setDockNestingEnabled(False)
         self.centralwidget = QtGui.QWidget(MainWindow)
@@ -59,6 +59,8 @@ class Ui_MainWindow(object):
         self.mindLabel.setObjectName(_fromUtf8("mindLabel"))
         self.statFormLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.mindLabel)
         self.mindSpin = QtGui.QSpinBox(self.centralwidget)
+        self.mindSpin.setMinimum(1)
+        self.mindSpin.setMaximum(12)
         self.mindSpin.setObjectName(_fromUtf8("mindSpin"))
         self.statFormLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.mindSpin)
         self.soulLabel = QtGui.QLabel(self.centralwidget)
@@ -66,6 +68,8 @@ class Ui_MainWindow(object):
         self.soulLabel.setObjectName(_fromUtf8("soulLabel"))
         self.statFormLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.soulLabel)
         self.soulSpin = QtGui.QSpinBox(self.centralwidget)
+        self.soulSpin.setMinimum(1)
+        self.soulSpin.setMaximum(12)
         self.soulSpin.setObjectName(_fromUtf8("soulSpin"))
         self.statFormLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.soulSpin)
         self.bodyLabel = QtGui.QLabel(self.centralwidget)
@@ -73,6 +77,8 @@ class Ui_MainWindow(object):
         self.bodyLabel.setObjectName(_fromUtf8("bodyLabel"))
         self.statFormLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.bodyLabel)
         self.bodySpin = QtGui.QSpinBox(self.centralwidget)
+        self.bodySpin.setMinimum(1)
+        self.bodySpin.setMaximum(12)
         self.bodySpin.setObjectName(_fromUtf8("bodySpin"))
         self.statFormLayout.setWidget(0, QtGui.QFormLayout.FieldRole, self.bodySpin)
         self.gridLayout_2.addLayout(self.statFormLayout, 4, 0, 1, 1)
@@ -194,6 +200,8 @@ class Ui_MainWindow(object):
         self.label.setObjectName(_fromUtf8("label"))
         self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label)
         self.cpSpin = QtGui.QSpinBox(self.centralwidget)
+        self.cpSpin.setMinimum(10)
+        self.cpSpin.setMaximum(100)
         self.cpSpin.setObjectName(_fromUtf8("cpSpin"))
         self.formLayout.setWidget(0, QtGui.QFormLayout.FieldRole, self.cpSpin)
         self.gridLayout_2.addLayout(self.formLayout, 0, 0, 1, 1)
@@ -222,6 +230,22 @@ class Ui_MainWindow(object):
         self.line_7.setFrameShadow(QtGui.QFrame.Sunken)
         self.line_7.setObjectName(_fromUtf8("line_7"))
         self.gridLayout_2.addWidget(self.line_7, 2, 1, 1, 1)
+        self.formLayout_2 = QtGui.QFormLayout()
+        self.formLayout_2.setObjectName(_fromUtf8("formLayout_2"))
+        self.label_2 = QtGui.QLabel(self.centralwidget)
+        self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Remaining Character Points", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.formLayout_2.setWidget(0, QtGui.QFormLayout.LabelRole, self.label_2)
+        self.remainingCpEdit = QtGui.QLineEdit(self.centralwidget)
+        self.remainingCpEdit.setEnabled(False)
+        self.remainingCpEdit.setObjectName(_fromUtf8("remainingCpEdit"))
+        self.formLayout_2.setWidget(0, QtGui.QFormLayout.FieldRole, self.remainingCpEdit)
+        self.gridLayout_2.addLayout(self.formLayout_2, 0, 2, 1, 3)
+        self.line_9 = QtGui.QFrame(self.centralwidget)
+        self.line_9.setFrameShape(QtGui.QFrame.VLine)
+        self.line_9.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line_9.setObjectName(_fromUtf8("line_9"))
+        self.gridLayout_2.addWidget(self.line_9, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 486, 19))
@@ -230,10 +254,6 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
         MainWindow.setMenuBar(self.menubar)
-        self.statusBar = QtGui.QStatusBar(MainWindow)
-        self.statusBar.setSizeGripEnabled(True)
-        self.statusBar.setObjectName(_fromUtf8("statusBar"))
-        MainWindow.setStatusBar(self.statusBar)
         self.actionOpen = QtGui.QAction(MainWindow)
         self.actionOpen.setText(QtGui.QApplication.translate("MainWindow", "Open...", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
