@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Sat Aug 06 02:09:27 2011
+# Created: Sat Aug 06 03:16:48 2011
 #      by: PyQt4 UI code generator 4.8.5
 #
 # WARNING! All changes made in this file will be lost!
@@ -166,15 +166,15 @@ class Ui_MainWindow(object):
         self.label_4.setText(QtGui.QApplication.translate("MainWindow", "Remaining Skill Points:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.formLayout_2.setWidget(1, QtGui.QFormLayout.LabelRole, self.label_4)
-        self.remaingSpEdit = QtGui.QLineEdit(self.centralwidget)
-        self.remaingSpEdit.setEnabled(False)
+        self.remainingSpEdit = QtGui.QLineEdit(self.centralwidget)
+        self.remainingSpEdit.setEnabled(False)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.remaingSpEdit.sizePolicy().hasHeightForWidth())
-        self.remaingSpEdit.setSizePolicy(sizePolicy)
-        self.remaingSpEdit.setObjectName(_fromUtf8("remaingSpEdit"))
-        self.formLayout_2.setWidget(1, QtGui.QFormLayout.FieldRole, self.remaingSpEdit)
+        sizePolicy.setHeightForWidth(self.remainingSpEdit.sizePolicy().hasHeightForWidth())
+        self.remainingSpEdit.setSizePolicy(sizePolicy)
+        self.remainingSpEdit.setObjectName(_fromUtf8("remainingSpEdit"))
+        self.formLayout_2.setWidget(1, QtGui.QFormLayout.FieldRole, self.remainingSpEdit)
         self.gridLayout_2.addLayout(self.formLayout_2, 0, 1, 1, 2)
         self.notesFormLayout = QtGui.QFormLayout()
         self.notesFormLayout.setSizeConstraint(QtGui.QLayout.SetMaximumSize)

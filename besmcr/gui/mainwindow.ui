@@ -255,7 +255,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="remaingSpEdit">
+       <widget class="QLineEdit" name="remainingSpEdit">
         <property name="enabled">
          <bool>false</bool>
         </property>

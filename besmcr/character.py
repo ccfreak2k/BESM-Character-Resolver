@@ -1,4 +1,5 @@
 import yaml
+import copy
 from math import ceil
 
 # ==============================================================================
@@ -86,9 +87,18 @@ class Character(object):
 def load(filename):
     """Loads a character from a YAML file and returns it"""  
     stream = file(filename, 'r')
-    c = yaml.load(stream)
+    x = yaml.load(stream)
     
-    if isinstance(c, Character):
-        print Character.__dict__
+    if isinstance(x, Character):
+        # retarded even more unsafe compatibality go
+        c = Character()
+
+        for attr in dir(x):
+            # lazy check if it's private
+            if not attr[:2] == "__":
+                # check if it's not a function
+                if not callable(x.__getattribute__(attr)):
+                    # basically copy it into our version of character
+                    c.__setattr__(attr, x.__getattribute__(attr))
         return c
         
