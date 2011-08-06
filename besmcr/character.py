@@ -20,6 +20,7 @@ class Character(object):
         
         # Points
         self.character_points = 35
+        self.skill_points = 20
         
         # Stats
         self.body = 1
@@ -88,5 +89,6 @@ def load(filename):
     c = yaml.load(stream)
     
     if isinstance(c, Character):
+        print Character.__dict__
         return c
         
