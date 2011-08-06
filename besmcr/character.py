@@ -6,7 +6,7 @@ from math import ceil
 
 class Character(object):
     """Represents a BESM character configuration."""
-    
+        
     def __init__(self):
         # Character information
         self.name = ""
@@ -20,7 +20,7 @@ class Character(object):
         self.weight = ""
         
         # Points
-        self.character_points = 35
+        self.character_points = 20
         self.skill_points = 20
         
         # Stats
@@ -89,16 +89,23 @@ def load(filename):
     stream = file(filename, 'r')
     x = yaml.load(stream)
     
+    # check if it vaguely matches our kind of character
     if isinstance(x, Character):
         # retarded even more unsafe compatibality go
         c = Character()
 
+        # loop through everything in it's namespace
         for attr in dir(x):
-            # lazy check if it's private
-            if not attr[:2] == "__":
-                # check if it's not a function
-                if not callable(x.__getattribute__(attr)):
-                    # basically copy it into our version of character
-                    c.__setattr__(attr, x.__getattribute__(attr))
+            # check if it's in our own version, ignore otherwise
+            if hasattr(c, attr):
+                # check if it's not a function or private or if it's not the
+                # same type as ours
+                if not callable(x.__getattribute__(attr)) \
+                    and not attr[:2] == "__" \
+                    and type(c.__getattribute__(attr)) == type(
+                            x.__getattribute__(attr)):
+                        # basically copy it into our version of character
+                        c.__setattr__(attr, x.__getattribute__(attr))
+                    
         return c
         

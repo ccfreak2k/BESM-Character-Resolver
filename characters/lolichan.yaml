@@ -1,32 +1,15 @@
 !!python/object:besmcr.character.Character
-age: !!python/object/apply:sip._unpickle_type
-- PyQt4.QtCore
-- QString
-- !!python/tuple [!!python/unicode '12']
+age: '7'
 attributes: []
 body: 4
-character_points: 30
-genre: !!python/object/apply:sip._unpickle_type
-- PyQt4.QtCore
-- QString
-- !!python/tuple [!!python/unicode 'Teenage Romance']
-height: !!python/object/apply:sip._unpickle_type
-- PyQt4.QtCore
-- QString
-- !!python/tuple [!!python/unicode '4'' 5"']
-mind: 8
-name: !!python/object/apply:sip._unpickle_type
-- PyQt4.QtCore
-- QString
-- !!python/tuple [!!python/unicode 'Lolichan']
-notes: !!python/object/apply:sip._unpickle_type
-- PyQt4.QtCore
-- QString
-- !!python/tuple [!!python/unicode 'Aren''t I kawaii? Uguu~']
+character_points: 20
+genre: Teenage Romance
+height: 4' 7"
+mind: 4
+name: lolichan
+notes: it..it's not like I llike you or anything...!
 race: ''
+skill_points: 20
 skills: []
-soul: 9
-weight: !!python/object/apply:sip._unpickle_type
-- PyQt4.QtCore
-- QString
-- !!python/tuple [!!python/unicode '67kg']
+soul: 11
+weight: 46kg
