@@ -12,7 +12,6 @@ def load(filename, cls, whitelist=None):
     
     The result is a clean, safely loaded object, in theory.
     """
-    
     stream = file(filename, 'r')
     yaml_obj = yaml.load(stream)
     
@@ -26,8 +25,7 @@ def safe_copy_attributes(unsafe_obj, cls, whitelist=None):
     Copies attributes from one instance of some type to another. However it only
     copies attributes specified in the whitelist, or if no whitelist is
     specified; copies only the attributes which the specified class has.
-    """
-    
+    """ 
     clean_obj = cls()
     
     # Loop through everything in the unsafe object's namespace.

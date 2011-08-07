@@ -1,5 +1,8 @@
 import yaml
+
 from math import ceil
+
+# ------------------------------------------------------------------------------
 
 import yamlSafeLoader
 
@@ -8,7 +11,7 @@ import yamlSafeLoader
 class Character(object):
     """Represents a BESM character configuration."""
     
-    # Our whitelist for yamlSafeLoader
+    # Our whitelist for yamlSafeLoader.
     yaml_whitelist = [
         "name",
         "age",
@@ -26,6 +29,8 @@ class Character(object):
         "mind",
         "soul"
     ]
+    
+    # -------------------------------------------------------------------------
     
     def __init__(self):
         # Character information
