@@ -13,11 +13,10 @@ def load(filename, cls, whitelist=None):
     The result is a clean, safely loaded object, in theory.
     """
     
-    # load the file for reading and grab the yaml version
+    # Load the file for reading and grab the YAML copy of the object.
     stream = file(filename, 'r')
     yaml_obj = yaml.load(stream)
     
-    # return the cleaned version of it
     return safe_copy_attributes(yaml_obj, cls, whitelist)
 
 # ------------------------------------------------------------------------------
@@ -29,33 +28,30 @@ def safe_copy_attributes(unsafe_obj, cls, whitelist=None):
     copies attributes specified in the whitelist, or if no whitelist is
     specified; copies only the attributes which the specified class has.
     """
+   
+    clean_obj = cls()
     
-    # make an instance of the object we actually want
-    real_obj = cls()
-    
-    # loop through everything in it's namespace
+    # Loop through everything in the unsafe object's namespace.
     for attr in dir(unsafe_obj):
         if whitelist:
             if not attr in whitelist:
                 continue
-                
-        # check if it's in our own version, ignore otherwise
-        if not hasattr(real_obj, attr):
-            continue
-            
-        # check if it's not a function or private or if it's not the
-        # same type as ours, ignore otherwise
+             
+        # Check if it's supposed to be a private attribute.
         if attr[:2] == "__":
             continue
+
+        if not hasattr(clean_obj, attr):
+            continue      
         if callable(unsafe_obj.__getattribute__(attr)):
             continue
-        if not type(real_obj.__getattribute__(attr)) == type(
+        if not type(clean_obj.__getattribute__(attr)) == type(
             unsafe_obj.__getattribute__(attr)):
             continue
                 
-        # basically copy it into our version of character
-        real_obj.__setattr__(attr, 
+        # Copy it into our cleaned object using the most horrible looking
+        # functions ever.
+        clean_obj.__setattr__(attr, 
             unsafe_obj.__getattribute__(attr))
             
-    # return dat new shiny object
-    return real_obj
+    return clean_obj
