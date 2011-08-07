@@ -27,7 +27,7 @@ def safe_copy_attributes(unsafe_obj, cls, whitelist=None):
     copies attributes specified in the whitelist, or if no whitelist is
     specified; copies only the attributes which the specified class has.
     """
-   
+    
     clean_obj = cls()
     
     # Loop through everything in the unsafe object's namespace.
@@ -42,7 +42,7 @@ def safe_copy_attributes(unsafe_obj, cls, whitelist=None):
 
         if not hasattr(clean_obj, attr):
             continue      
-        if callable(unsafe_obj.__getattribute__(attr)):
+        if callable(clean_obj.__getattribute__(attr)):
             continue
         if not type(clean_obj.__getattribute__(attr)) == type(
             unsafe_obj.__getattribute__(attr)):
