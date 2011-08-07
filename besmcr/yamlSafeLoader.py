@@ -13,7 +13,6 @@ def load(filename, cls, whitelist=None):
     The result is a clean, safely loaded object, in theory.
     """
     
-    # Load the file for reading and grab the YAML copy of the object.
     stream = file(filename, 'r')
     yaml_obj = yaml.load(stream)
     
