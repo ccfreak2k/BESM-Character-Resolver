@@ -49,7 +49,6 @@ class Character(object):
         self.soul = 1
         
         # Modifiers
-        self.attributes = []
         self.skills = []
     
     # --------------------------------------------------------------------------

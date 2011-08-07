@@ -17,11 +17,17 @@ def load(filename, cls, whitelist=None):
     stream = file(filename, 'r')
     yaml_obj = yaml.load(stream)
     
+    # return the cleaned version of it
+    return clean_attributes(yaml_obj, cls, whitelist)
+
+# ------------------------------------------------------------------------------
+    
+def clean_attributes(unsafe_obj, cls, whitelist=None):
     # make an instance of the object we actually want
     real_obj = cls()
     
     # loop through everything in it's namespace
-    for attr in dir(yaml_obj):
+    for attr in dir(unsafe_obj):
         if whitelist:
             if not attr in whitelist:
                 continue
@@ -34,15 +40,15 @@ def load(filename, cls, whitelist=None):
         # same type as ours, ignore otherwise
         if attr[:2] == "__":
             continue
-        if callable(yaml_obj.__getattribute__(attr)):
+        if callable(unsafe_obj.__getattribute__(attr)):
             continue
         if not type(real_obj.__getattribute__(attr)) == type(
-            yaml_obj.__getattribute__(attr)):
+            unsafe_obj.__getattribute__(attr)):
             continue
                 
         # basically copy it into our version of character
         real_obj.__setattr__(attr, 
-            yaml_obj.__getattribute__(attr))
+            unsafe_obj.__getattribute__(attr))
             
     # return dat new shiny object
     return real_obj
