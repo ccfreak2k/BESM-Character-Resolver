@@ -1,12 +1,32 @@
 import yaml
-import copy
 from math import ceil
+
+import yamlSafeLoader
 
 # ==============================================================================
 
 class Character(object):
     """Represents a BESM character configuration."""
+    
+    # Our whitelist for yamlSafeLoader
+    yaml_whitelist = [
+        "name",
+        "age",
+        "genre",
+        "notes",
         
+        "race",
+        "height",
+        "weight",
+        
+        "character_points",
+        "skill_points",
+        
+        "body",
+        "mind",
+        "soul"
+    ]
+    
     def __init__(self):
         # Character information
         self.name = ""
@@ -85,27 +105,6 @@ class Character(object):
 # ==============================================================================
 
 def load(filename):
-    """Loads a character from a YAML file and returns it"""  
-    stream = file(filename, 'r')
-    x = yaml.load(stream)
-    
-    # check if it vaguely matches our kind of character
-    if isinstance(x, Character):
-        # retarded even more unsafe compatibality go
-        c = Character()
-
-        # loop through everything in it's namespace
-        for attr in dir(x):
-            # check if it's in our own version, ignore otherwise
-            if hasattr(c, attr):
-                # check if it's not a function or private or if it's not the
-                # same type as ours
-                if not callable(x.__getattribute__(attr)) \
-                    and not attr[:2] == "__" \
-                    and type(c.__getattribute__(attr)) == type(
-                            x.__getattribute__(attr)):
-                        # basically copy it into our version of character
-                        c.__setattr__(attr, x.__getattribute__(attr))
-                    
-        return c
+    """A wrapper for yamlSafeLoader, passes our class to it."""
+    return yamlSafeLoader.load(filename, Character, Character.yaml_whitelist)
         

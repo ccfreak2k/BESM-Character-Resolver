@@ -15,7 +15,7 @@ class MainWindow(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self)
         
         # Load the UI files
-        self.ui = gui.mainwindow.Ui_MainWindow()
+        self.ui = gui.mainWindow.Ui_MainWindow()
         self.ui.setupUi(self)
         
         # Create a new character instance for us to work with
