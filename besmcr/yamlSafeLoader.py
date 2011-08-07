@@ -18,11 +18,18 @@ def load(filename, cls, whitelist=None):
     yaml_obj = yaml.load(stream)
     
     # return the cleaned version of it
-    return clean_attributes(yaml_obj, cls, whitelist)
+    return safe_copy_attributes(yaml_obj, cls, whitelist)
 
 # ------------------------------------------------------------------------------
     
-def clean_attributes(unsafe_obj, cls, whitelist=None):
+def safe_copy_attributes(unsafe_obj, cls, whitelist=None):
+    """Cleanly copies attributes from one object to another.
+    
+    Copies attributes from one instance of some type to another. However it only
+    copies attributes specified in the whitelist, or if no whitelist is
+    specified; copies only the attributes which the specified class has.
+    """
+    
     # make an instance of the object we actually want
     real_obj = cls()
     
