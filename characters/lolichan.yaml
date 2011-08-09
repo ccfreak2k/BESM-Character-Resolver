@@ -1,0 +1,15 @@
+!!python/object:besmcr.character.Character
+age: '7'
+attributes: []
+body: 4
+character_points: 20
+genre: Teenage Romance
+height: 4' 7"
+mind: 4
+name: lolichan
+notes: It's not like I llike you or anything... ! Jeez~
+race: ''
+skill_points: 20
+skills: []
+soul: 11
+weight: 46kg

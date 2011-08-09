@@ -4,6 +4,8 @@ import sys
 from PyQt4 import QtCore
 from PyQt4 import QtGui
 
+# ------------------------------------------------------------------------------
+
 from besmcr import *
 
 # ==============================================================================
@@ -15,7 +17,7 @@ class MainWindow(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self)
         
         # Load the UI files
-        self.ui = gui.mainwindow.Ui_MainWindow()
+        self.ui = gui.mainWindow.Ui_MainWindow()
         self.ui.setupUi(self)
         
         # Create a new character instance for us to work with
@@ -42,7 +44,9 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.bodySpin.setValue(self.character.body)
         self.ui.mindSpin.setValue(self.character.mind)
         self.ui.soulSpin.setValue(self.character.soul)
+        
         self.ui.cpSpin.setValue(self.character.character_points)
+        self.ui.spSpin.setValue(self.character.skill_points)
         
         # Find whatever genre was in our character file in the combo box
         i = self.ui.genreSelection.findText(self.character.genre)
@@ -58,8 +62,9 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.shockEdit.setText(str(self.character.get_shock()))
         
         self.ui.remainingCpEdit.setText(str(
-            self.character.get_remaining_character_points()))        
-    
+            self.character.get_remaining_character_points()))
+        self.ui.remainingSpEdit.setText(str(self.character.skill_points)) 
+            
     def update_gui_spinbox_ranges(self):
         """Adjusts the spinbox ranges to match character point limitations"""
         body_max = self.character.character_points - (self.character.mind + 
@@ -69,7 +74,8 @@ class MainWindow(QtGui.QMainWindow):
         soul_max = self.character.character_points - (self.character.body + 
             self.character.mind)
             
-        # Don't go above the max 12 limit
+        # Even if we can technically spend more than 12, game mechanics do not
+        # allow it, so cap it.
         if body_max > 12:
             body_max = 12
         if mind_max > 12:
@@ -83,51 +89,57 @@ class MainWindow(QtGui.QMainWindow):
         
     # --------------------------------------------------------------------------
     
-    
     @QtCore.pyqtSlot(str)
     def on_nameEdit_textEdited(self, s):
-        self.character.name = s
+        self.character.name = str(s)
         
     @QtCore.pyqtSlot(str)
     def on_ageEdit_textEdited(self, s):
-        self.character.age = s
+        self.character.age = str(s)
     
     @QtCore.pyqtSlot(str)
     def on_weightEdit_textEdited(self, s):
-        self.character.weight = s
+        self.character.weight = str(s)
         
     @QtCore.pyqtSlot(str)
     def on_heightEdit_textEdited(self, s):
-        self.character.height = s
+        self.character.height = str(s)
         
     @QtCore.pyqtSlot()
     def on_notesEdit_textChanged(self):
-        self.character.notes = self.ui.notesEdit.toPlainText()
+        self.character.notes = str(self.ui.notesEdit.toPlainText())
         
     @QtCore.pyqtSlot(str)
     def on_genreSelection_currentIndexChanged(self, s):
-        self.character.genre = s
+        self.character.genre = str(s)
     
     # --------------------------------------------------------------------------
     
     @QtCore.pyqtSlot(int)
     def on_bodySpin_valueChanged(self, i):     
-        self.character.body = i
+        self.character.body = int(i)
         self.update_gui()
         
     @QtCore.pyqtSlot(int)
     def on_mindSpin_valueChanged(self, i):    
-        self.character.mind = i
+        self.character.mind = int(i)
         self.update_gui()
         
     @QtCore.pyqtSlot(int)
     def on_soulSpin_valueChanged(self, i):    
-        self.character.soul = i
+        self.character.soul = int(i)
+        self.update_gui()
+    
+    # --------------------------------------------------------------------------
+    
+    @QtCore.pyqtSlot(int)
+    def on_cpSpin_valueChanged(self, i):
+        self.character.character_points = int(i)
         self.update_gui()
         
     @QtCore.pyqtSlot(int)
-    def on_cpSpin_valueChanged(self, i):
-        self.character.character_points = i
+    def on_spSpin_valueChanged(self, i):
+        self.character.skill_points = int(i)
         self.update_gui()
         
     # --------------------------------------------------------------------------
@@ -145,8 +157,6 @@ class MainWindow(QtGui.QMainWindow):
             self.character = character.load(filename)
             
             self.update_gui()     
-    
-    # --------------------------------------------------------------------------
     
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
@@ -169,8 +179,6 @@ class MainWindow(QtGui.QMainWindow):
         if filename:
             self.character.save(filename)
             self.character_filename = filename
-        
-    # --------------------------------------------------------------------------
     
     @QtCore.pyqtSlot()
     def on_actionExit_triggered(self):
