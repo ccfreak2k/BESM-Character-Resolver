@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>573</width>
-    <height>753</height>
+    <height>673</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -567,10 +567,13 @@
          </sizepolicy>
         </property>
         <property name="minimum">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="maximum">
          <number>12</number>
+        </property>
+        <property name="value">
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -590,10 +593,13 @@
          </sizepolicy>
         </property>
         <property name="minimum">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="maximum">
          <number>12</number>
+        </property>
+        <property name="value">
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -613,10 +619,13 @@
          </sizepolicy>
         </property>
         <property name="minimum">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="maximum">
          <number>12</number>
+        </property>
+        <property name="value">
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -630,7 +639,7 @@
      <x>0</x>
      <y>0</y>
      <width>573</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

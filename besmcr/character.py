@@ -30,9 +30,9 @@ class Character(object):
         self.skill_points = 20
         
         # Stats
-        self.body = 1
-        self.mind = 1
-        self.soul = 1
+        self.body = 0
+        self.mind = 0
+        self.soul = 0
         
         # Modifiers
         self.skills = SkillList([])
@@ -78,7 +78,7 @@ class Character(object):
         
         Defense = (Combat - 2)
         """
-        return self.get_combat() - 2
+        return max(0, self.get_combat() - 2)
         
     # --------------------------------------------------------------------------
     
