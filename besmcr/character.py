@@ -4,34 +4,15 @@ from math import ceil
 
 # ------------------------------------------------------------------------------
 
-import yamlSafeLoader
+import yaml
+
+from skill import SkillList
 
 # ==============================================================================
 
 class Character(object):
     """Represents a BESM character configuration."""
-    
-    # Our whitelist for yamlSafeLoader.
-    yaml_whitelist = [
-        "name",
-        "age",
-        "genre",
-        "notes",
-        
-        "race",
-        "height",
-        "weight",
-        
-        "character_points",
-        "skill_points",
-        
-        "body",
-        "mind",
-        "soul"
-    ]
-    
-    # -------------------------------------------------------------------------
-    
+
     def __init__(self):
         # Character information
         self.name = ""
@@ -54,12 +35,12 @@ class Character(object):
         self.soul = 1
         
         # Modifiers
-        self.skills = []
+        self.skills = SkillList([])
     
     # --------------------------------------------------------------------------
     
     def get_remaining_character_points(self):
-        """Returns the remaining character points, as the name suggests"""
+        """Returns the remaining character points."""
         return self.character_points - (self.body + self.mind + self.soul)
         
     # --------------------------------------------------------------------------
@@ -109,6 +90,6 @@ class Character(object):
 # ==============================================================================
 
 def load(filename):
-    """A wrapper for yamlSafeLoader, passes our class to it."""
-    return yamlSafeLoader.load(filename, Character, Character.yaml_whitelist)
+    """Loads a character object from a YAML file."""
+    pass
         

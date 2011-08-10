@@ -6,7 +6,8 @@ from PyQt4 import QtGui
 
 # ------------------------------------------------------------------------------
 
-from besmcr import *
+from besmcr import gui
+from besmcr import character
 
 # ==============================================================================
 
