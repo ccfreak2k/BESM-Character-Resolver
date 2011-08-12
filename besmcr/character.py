@@ -10,9 +10,11 @@ from skill import SkillList
 
 # ==============================================================================
 
-class Character(object):
+class Character(yaml.YAMLObject):
     """Represents a BESM character configuration."""
 
+    yaml_tag = "Character"
+    
     def __init__(self):
         # Character information
         self.name = ""
@@ -91,5 +93,6 @@ class Character(object):
 
 def load(filename):
     """Loads a character object from a YAML file."""
-    pass
+    stream = file(filename, 'r')
+    return yaml.load(stream)
         

@@ -1,6 +1,6 @@
-!!python/object:besmcr.character.Character
+!<Character>
 age: '7'
-body: 4
+body: 5
 character_points: 20
 genre: Cyberpunk
 height: 4' 7"
@@ -9,6 +9,6 @@ name: lolichan
 notes: It's not like I llike you or anything... ! Jeez~
 race: ''
 skill_points: 20
-skills: !!python/object:besmcr.skill.SkillList {}
+skills: !<SkillList> {}
 soul: 11
 weight: 46kg
