@@ -8,6 +8,7 @@ from PyQt4 import QtGui
 
 from besmcr import gui
 from besmcr import character
+from besmcr import skill
 
 # ==============================================================================
 
@@ -25,6 +26,9 @@ class MainWindow(QtGui.QMainWindow):
         self.character = character.Character()
         self.character_filename = ""
         self.update_gui_character_info()
+        
+        # Will represent the loaded skillset.
+        self.skillset = None
 
     # --------------------------------------------------------------------------
 
@@ -153,6 +157,7 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.pyqtSlot()
     def on_actionOpen_triggered(self):
         filename = QtGui.QFileDialog.getOpenFileName(filter="YAML (*.yaml)")
+        
         if filename:
             self.character_filename = filename
             self.character = character.load(filename)
@@ -185,6 +190,26 @@ class MainWindow(QtGui.QMainWindow):
     def on_actionExit_triggered(self):
         """Exits the application."""
         quit()
+        
+    # --------------------------------------------------------------------------
+
+    @QtCore.pyqtSlot()
+    def on_actionLoad_Skillset_triggered(self):
+        filename = QtGui.QFileDialog.getOpenFileName(filter="YAML (*.yaml)")
+        
+        if filename:
+            self.skillset = skill.load_list(filename)
+            
+            for s in self.skillset:
+                # Create widget items to be added in the table. Each column
+                # needs it's own item.
+                name_item = QtGui.QTableWidgetItem(s.name)
+                cost_item = QtGui.QTableWidgetItem(str(s.cost))
+                
+                # Inserting at row zero seems to make them populate in reverse.
+                self.ui.skillsTable.insertRow(0)    
+                self.ui.skillsTable.setItem(0,0,name_item)
+                self.ui.skillsTable.setItem(0,1,cost_item)
 
 # ==============================================================================
 

@@ -18,7 +18,7 @@ class SkillList(yaml.YAMLObject):
 
     yaml_tag = "SkillList"
     
-    def __init__(self, x):
+    def __init__(self):
         self.container = []
 
     # --------------------------------------------------------------------------
@@ -62,6 +62,6 @@ class SkillList(yaml.YAMLObject):
 
 def load_list(filename):
     """Loads a skill list from a YAML file and returns it."""
-    stream = file(filename, 'w')
+    stream = file(filename, 'r')
     return yaml.load(stream)
 

@@ -1,0 +1,5 @@
+!<SkillList>
+container:
+- !<Skill> {cost: 5, name: Jumping}
+- !<Skill> {cost: 5, name: Skiiing}
+- !<Skill> {cost: 5, name: Hacking}

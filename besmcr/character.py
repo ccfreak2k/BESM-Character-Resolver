@@ -37,7 +37,7 @@ class Character(yaml.YAMLObject):
         self.soul = 0
         
         # Modifiers
-        self.skills = SkillList([])
+        self.skills = SkillList()
     
     # --------------------------------------------------------------------------
     
